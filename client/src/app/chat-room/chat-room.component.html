@@ -1,0 +1,6 @@
+<h2>Mega-Chat</h2>
+<div *ngFor="let message of messages">
+    {{message}}
+</div>
+<input [(ngModel)]="message" placeholder="enter your message"/>
+<button (click)="sendMessage()">Send</button>
