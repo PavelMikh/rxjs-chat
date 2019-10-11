@@ -10,20 +10,21 @@ let io = socketIO(server);
 const port = process.env.PORT || 3000;
 
 io.on('connection', (socket) => {
-
-  console.log('user connected');
-  var messageWrapper = {};
-  socket.on('new-nickname', (nickname) => {
-    socket.username = nickname;
-    messageWrapper ['name'] = socket.username;
-  });
-  socket.on('new-message', (message) => {
-    messageWrapper ['message'] = message;
-    // console.log(JSON.stringify(messageWrapper));
-    socket.broadcast.emit('new message', JSON.stringify(messageWrapper));
-  });
+    console.log('user connected');
+    var data = {};
+    socket.on('new-nickname', (nickname) => {
+        socket.username = nickname;
+        socket.emit('new-nickname', socket.username);
+        data ['name'] = socket.username;
+    });
+    socket.on('new-message', (message) => {
+        socket.emit("new-message", message);
+        data ['message'] = message;
+        // console.log(data);
+        // io.emit('new message', data);
+    });
 });
 
 server.listen(port, () => {
-  console.log(`started on port: ${port}`);
+    console.log(`started on port: ${port}`);
 });

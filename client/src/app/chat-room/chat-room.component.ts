@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 export class ChatRoomComponent implements OnInit {
     message: string;
     messages: string[] = [];
-    nickName: Observable<unknown> = this.chatService.getUserName();
+    name = this.chatService.getName();
 
     constructor(private chatService: ChatService) {
     }
@@ -27,6 +27,6 @@ export class ChatRoomComponent implements OnInit {
             .getMessages()
             .subscribe((message: string) => {
                 this.messages.push(message);
-    });
+            });
     }
 }
