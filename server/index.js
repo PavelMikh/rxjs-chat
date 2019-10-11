@@ -1,6 +1,5 @@
 let express = require('express')
 let app = express();
-
 let http = require('http');
 let server = http.Server(app);
 
@@ -9,19 +8,20 @@ let io = socketIO(server);
 
 const port = process.env.PORT || 3000;
 
+const users = [];
+
 io.on('connection', (socket) => {
-    console.log('user connected');
-    var data = {};
     socket.on('new-nickname', (nickname) => {
         socket.username = nickname;
-        socket.emit('new-nickname', socket.username);
-        data ['name'] = socket.username;
+        users.push(socket.username);
+        console.log('user connected');
     });
     socket.on('new-message', (message) => {
-        socket.emit("new-message", message);
-        data ['message'] = message;
-        // console.log(data);
-        // io.emit('new message', data);
+        io.emit("new-message", {
+            username: socket.username,
+            content: message
+        });
+
     });
 });
 

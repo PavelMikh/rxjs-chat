@@ -4,10 +4,10 @@
         <div class="col-md-8 pb-2 authorization">
             <h2 class="text-center">Mega-Chat</h2>
             <p class="text-center">Enter in chat:</p>
-            <form>
+            <form [formGroup]="signUpForm" ]>
                 <div class="mb-2">
                     <input style="width: 100%" type="text" [(ngModel)]="nickname" name="user-name"
-                           placeholder="enter your nickname"/>
+                           placeholder="enter your nickname" [formControlName]="nickname"/>
                 </div>
                 <button class="btn btn-primary float-right" (click)="isValid(nickname, 'chat')">OK</button>
             </form>

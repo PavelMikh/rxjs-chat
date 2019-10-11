@@ -1,8 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChatService} from '../../chat-service';
-import {AuthorizationComponent} from '../authorization/authorization.component';
-import {AppComponent} from '../app.component';
-import {Observable} from 'rxjs';
+import {Message} from '../message';
 
 @Component({
     selector: 'app-chat-room',
@@ -11,8 +9,7 @@ import {Observable} from 'rxjs';
 })
 export class ChatRoomComponent implements OnInit {
     message: string;
-    messages: string[] = [];
-    name = this.chatService.getName();
+    messages: Message[] = [];
 
     constructor(private chatService: ChatService) {
     }
@@ -25,7 +22,7 @@ export class ChatRoomComponent implements OnInit {
     ngOnInit() {
         this.chatService
             .getMessages()
-            .subscribe((message: string) => {
+            .subscribe((message: Message) => {
                 this.messages.push(message);
             });
     }

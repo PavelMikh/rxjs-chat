@@ -6,8 +6,8 @@
             <div class="mb-2">
                 <h4 class="pb-2 text-center">Messages list</h4>
                 <div *ngFor="let message of messages" class="ml-2">
-                    <span>{{name}}: </span>
-                    {{message}}
+                    <span>{{message.username}}: </span>
+                    {{message.content}}
                 </div>
             </div>
             <div class="line mb-2"></div>
