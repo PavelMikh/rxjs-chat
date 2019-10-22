@@ -1,16 +1,29 @@
 <div class="container p-2">
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8 pb-2 authorization">
+        <div class="col-md-8 pb-2 authorization rounded">
             <h2 class="text-center">Mega-Chat</h2>
             <p class="text-center">Enter in chat:</p>
-            <form [formGroup]="signUpForm" ]>
-                <div class="mb-2">
-                    <input style="width: 100%" type="text" [(ngModel)]="nickname" name="user-name"
-                           placeholder="enter your nickname" [formControlName]="nickname"/>
+            <div class="mb-2">
+                <input style="width: 100%" type="text" [(ngModel)]="nickname" placeholder="enter your nickname"
+                       id="name" class="form-control" required minlength="4" maxlength="16" pattern="[a-zA-Z0-9_-]*" #name="ngModel"/>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="name.errors.required">
+                        Name is required.
+                    </div>
+                    <div *ngIf="name.errors.minlength">
+                        Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="name.errors.maxlength">
+                        Name must be max 16 characters long.
+                    </div>
+                    <div *ngIf="name.errors.pattern">
+                        Name must be in latin letters, underscores, hyphens and numbers.
+                    </div>
                 </div>
-                <button class="btn btn-primary float-right" (click)="isValid(nickname, 'chat')">OK</button>
-            </form>
+            </div>
+            <button class="btn btn-primary float-right" [disabled]="name.invalid" (click)="connectUser('chat')">OK</button>
         </div>
         <div class="col-md-2"></div>
     </div>

@@ -2,7 +2,7 @@
 <div class="container p-2">
     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6 chat-room p-2">
+        <div class="col-md-6 chat-room p-2 rounded">
             <div class="mb-2">
                 <h4 class="pb-2 text-center">Messages list</h4>
                 <div *ngFor="let message of messages" class="ml-2">
@@ -12,7 +12,7 @@
             </div>
             <div class="line mb-2"></div>
             <div class="mb-2">
-                <input style="width: 100%" [(ngModel)]="message" placeholder="enter your message"/>
+                <input class="pl-2" style="width: 100%" [(ngModel)]="message" placeholder="enter your message"/>
             </div>
             <div>
                 <button class="btn btn-primary float-right" (click)="sendMessage()">Send</button>

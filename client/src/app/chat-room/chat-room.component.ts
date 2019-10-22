@@ -21,6 +21,12 @@ export class ChatRoomComponent implements OnInit {
 
     ngOnInit() {
         this.chatService
+            .getMessagesHistory()
+            .subscribe((messagesHistory: []) => {
+                this.messages = messagesHistory;
+            });
+
+        this.chatService
             .getMessages()
             .subscribe((message: Message) => {
                 this.messages.push(message);
