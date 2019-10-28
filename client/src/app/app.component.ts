@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthorizationComponent} from './authorization/authorization.component';
 import {ChatService} from '../chat-service';
 
 @Component({

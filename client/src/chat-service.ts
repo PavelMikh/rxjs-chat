@@ -18,14 +18,34 @@ export class ChatService {
         this.socket.emit('authorization', users);
     }
 
-    public getNickname() {
+    public getAuthorName() {
         this.socket.on('new-message', (nickname) => {
             return nickname;
         });
     }
 
+    public sendUserState(value) {
+        this.socket.emit('user-state', value);
+    }
+
+    public getUserState() {
+        return new Observable((observer) => {
+            this.socket.on('typing', (userState) => {
+                observer.next(userState);
+            });
+        });
+    }
+
     public sendMessage(message) {
         this.socket.emit('new-message', message);
+    }
+
+    public getNickname() {
+        return new Observable((observer) => {
+            this.socket.on('new-nickname', (nickname) => {
+                observer.next(nickname);
+            });
+        });
     }
 
     public sendNickname(nickname) {

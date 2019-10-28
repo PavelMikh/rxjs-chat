@@ -9,9 +9,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
     styleUrls: ['./authorization.component.scss']
 })
 export class AuthorizationComponent implements OnInit {
-    nickname;
+    nickname: string;
     private userForm: FormGroup;
-    username = this.chatService.getNickname();
+    username = this.chatService.getAuthorName();
     onlineUsers;
 
     constructor(private router: Router, private chatService: ChatService) {
